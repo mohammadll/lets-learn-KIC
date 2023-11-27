@@ -9,3 +9,18 @@ I highly recommend that you read the following links to become more familiar wit
   - https://gateway-api.sigs.k8s.io/
   - https://docs.konghq.com/kubernetes-ingress-controller/latest/gateway-api/
   - https://docs.konghq.com/kubernetes-ingress-controller/latest/concepts/gateway-api/
+
+
+# Follow the below steps to do this scenario
+To create a GatewayClass and Gateway with Kong Ingress Controller run the following:
+
+    kubectl apply -f kong-gateway.yml
+
+To proxy requests, you need an upstream application to send a request to. Deploying hashicorp/vault service:
+
+    kubectl apply -f vault-deployment.yml
+    kubectl apply -f vault-service.yml
+
+Create routing configuration to proxy `/` requests to the hashicorp/vault service:
+
+    kubectl apply -f vault-http-route.yml
