@@ -1,0 +1,12 @@
+gateway:
+  proxy:
+    stream:
+      - containerPort: 9000
+        servicePort: 9000
+        protocol: TCP
+        nodePort: 32080
+controller:
+  ingressController:
+    env:
+      # Required for all Gateway API stuff that still belongs to the experimental channel, e.g. TCPRoute.
+      feature_gates: GatewayAlpha=true
