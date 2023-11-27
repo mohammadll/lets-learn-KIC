@@ -1,5 +1,6 @@
 gateway:
   proxy:
+    # Kong Gateway does not include any TCP listen configuration by default. To expose TCP listens, use the below stream block. you can change port number if you want .
     stream:
       - containerPort: 9000
         servicePort: 9000
