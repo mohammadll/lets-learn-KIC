@@ -35,7 +35,7 @@ If you use the below commad, The request upstream now only contains the path com
 ## Prepend a path
 If you want to prepend a value to the upstream path, Add the `konghq.com/path` annotation to your Service, which prepends that value to the upstream path:
 
-Uncomment `annotations` and `konghq.com/path: '/api'` in `echo-app.yml` and the use the below command:
+Uncomment `annotations` and `konghq.com/path: '/api'` in `echo-app.yml` and the use the below commands:
 
     kubectl apply -f echo-app.yml
     curl -H 'Host:kong.example' "$PROXY_IP/echo/something?details=true"
