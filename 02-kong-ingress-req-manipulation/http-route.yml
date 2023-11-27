@@ -1,0 +1,21 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+ name: echo
+ # annotations:
+ #  konghq.com/strip-path: 'true' # If set to true, the part of the path specified in the Ingress rule will be stripped out before the request is sent to the service. For example, if the Ingress rule has a path of /foo and the HTTP request that matches the Ingress rule has the path /foo/bar/something, then the request sent to the Kubernetes service will have the path /bar/something.
+ #  konghq.com/preserve-host: 'false' # Kong Ingress Controller preserves the hostname in the request by default. You can disable preserve-host if you want the Host header to contain the upstream hostname of your service.
+spec:
+ parentRefs:
+ - name: kong
+ hostnames:
+ - 'kong.example'
+ rules:
+ - matches:
+   - path:
+       type: PathPrefix
+       value: /echo
+   backendRefs:
+   - name: echo
+     kind: Service
+     port: 1027
