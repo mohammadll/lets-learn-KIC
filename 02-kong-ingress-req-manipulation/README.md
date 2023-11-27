@@ -19,6 +19,7 @@ Uncomment `annotations` and `konghq.com/preserve-host: 'false'` in `http-route.y
 
     kubectl apply -f http-route.yml
     curl -H 'Host:kong.example' "$PROXY_IP/echo?details=true"
+The Host header in the response now contains the upstream Host and Port.
 
 ## Strip the path
 `konghq.com/strip-path` annotation, which strips the path component of the route/Ingress
