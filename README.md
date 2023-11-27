@@ -7,4 +7,4 @@ Kong Ingress Controller takes Kubernetes resources such as `Ingress` and `HTTPRo
 
 
 ## Table of Contents
- - 00-kong-ingress-setting-up [Setting-up](lets-learn-KIC/00-kong-ingress-setting-up)
+ - 00-kong-ingress-setting-up [Setting-up](00-kong-ingress-setting-up)
