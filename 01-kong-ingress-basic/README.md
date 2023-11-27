@@ -20,7 +20,12 @@ To proxy requests, you need an upstream application to send a request to. Deploy
 
     kubectl apply -f vault-deployment.yml
     kubectl apply -f vault-service.yml
+Make sure that the `hostname` in `HTTPRoute` is available in your /etc/hosts file . it points to external-ip of kong-gateway-proxy service
 
 Create routing configuration to proxy `/` requests to the hashicorp/vault service:
 
     kubectl apply -f vault-http-route.yml
+
+Test the routing rule:
+
+    curl -i http://vault.isc
