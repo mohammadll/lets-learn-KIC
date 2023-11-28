@@ -25,3 +25,30 @@ In this scenario, We're going to deploy mongo database with 1 replica to show yo
 I'm going to connect to mongo shell when i type `mongosh $PROXY_IP:9000`
 
 # Follow the below steps to do this scenario
+
+## Connectivity to Kong
+Kubernetes exposes the proxy through a Kubernetes service. Run the following commands to store the load balancer IP address in a variable named `PROXY_IP`:
+
+    export PROXY_IP=$(kubectl get svc --namespace kong kong-gateway-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+    echo $PROXY_IP
+
+## Deploy mongo DB by applying its statefulset and service resources
+
+    kubectl apply -f mongo-sts.yml
+    kubectl apply -f mongo-svc.yml
+
+## Create Gateway-Class and Gateway resources
+A new listener named `stream-9000` has beed added to the gateway to allow tcp routing
+
+    kubectl apply -f kong-gateway.yml
+
+## Create TCPRoute resource
+This TCPRoute is responsible to route TCP requests of port `9000` to mongo service, if you see the `parentRefs` field of `mongo-tcp-route.yml`, its `sectionName` is the name of listener that we added in the gateway
+
+    kubectl apply -f mongo-tcp-route.yml
+
+## Test The routing rule:
+
+    mongosh $PROXY_IP:9000
+
+You connected to mongo shell successfully
