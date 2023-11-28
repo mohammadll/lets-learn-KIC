@@ -20,4 +20,4 @@ In this scenario, We're going to proxy from `k8s` to `ubuntu.com`
     kubectl apply -f http-route.yml
 
 ## Test the routing rule
-Make sure hostname `ubuntu-from-k8s.kong` is available in your `/etc/hosts` and points to `external-ip` of `kong-gateway-proxy` service and then open your browser and type `http://ubuntu-from-k8s.kong/`. You'll see that your request is routed to `ubuntu.com`.
+Make sure hostname `ubuntu-from-k8s.kong` is available in your `/etc/hosts` and points to `external-ip` of `kong-gateway-proxy` service and then open your browser and type `http://ubuntu-from-k8s.kong`. You'll see that your request is routed to `ubuntu.com`.
