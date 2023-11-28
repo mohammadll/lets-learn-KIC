@@ -1,0 +1,21 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: vault
+  annotations:
+    konghq.com/protocols: 'https' # This annotation can be set on a Kubernetes Service resource and indicates the protocol that should be used by Kong to communicate with the service. In other words, the protocol is used for communication between a Kong Service and a Kubernetes Service, internally in the Kubernetes cluster.
+    konghq.com/https-redirect-status-code: '301' # By default, Kong sends HTTP Status Code 426 for requests that need to be redirected to HTTPS. This can be changed using this annotations.
+spec:
+  parentRefs:
+  - name: kong
+    sectionName: https
+  hostnames:
+  - 'vault.isc'
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - name: vault
+      port: 8200
