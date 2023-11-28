@@ -7,6 +7,12 @@
     helm repo add kong https://charts.konghq.com
     helm repo update
     helm install kong kong/ingress --values values.yml --namespace kong --create-namespace
+    
+## Connectivity to Kong
+Kubernetes exposes the proxy through a Kubernetes service. Run the following commands to store the load balancer IP address in a variable named PROXY_IP:
+
+    export PROXY_IP=$(kubectl get svc --namespace kong kong-gateway-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+    echo $PROXY_IP
 ## Optional
 
 ## Apply kong-tls-secret.yml to use self-signed certificates for the tls examples of this repo
