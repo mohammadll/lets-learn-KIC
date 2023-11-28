@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: proxy-to-ubuntu
+spec:
+  ports:
+  - protocol: TCP
+    port: 80
+  type: ExternalName
+  externalName: ubuntu.com
