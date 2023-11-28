@@ -8,7 +8,7 @@ metadata:
 spec:
   parentRefs:
   - name: kong
-    sectionName: https # refer to listener name in gateway
+    sectionName: https # refer to HTTPS listener name in gateway to attach this HTTPRoute to HTTPS listener
   hostnames:
   - 'vault.isc'
   rules:
