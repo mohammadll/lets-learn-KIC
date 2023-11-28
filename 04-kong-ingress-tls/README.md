@@ -17,6 +17,7 @@ If you remember, we created a secret called `"kong-tls"` in the first section of
     kubectl apply -f kong-tls-secret.yml
 
   ## Create Gateway-Class and Gateway Resources
+A new listener called `https` has been added to the gateway
 
     kubectl apply -f kong-gateway.yml
 
