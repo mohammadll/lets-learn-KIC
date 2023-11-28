@@ -1,0 +1,12 @@
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: TCPRoute
+metadata:
+ name: mongo
+spec:
+ parentRefs:
+ - name: kong
+   sectionName: stream-9000
+ rules:
+ - backendRefs:
+   - name: mongo-db
+     port: 27017

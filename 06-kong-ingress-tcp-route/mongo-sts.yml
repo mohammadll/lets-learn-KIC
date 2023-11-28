@@ -1,0 +1,29 @@
+apiVersion: "apps/v1"
+kind: "StatefulSet"
+metadata: 
+  name: "mongo-db"
+spec:
+  serviceName: "mongo-db" 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: "mongo-db"
+  template: 
+    metadata: 
+      labels: 
+        app: "mongo-db"
+    spec: 
+      containers: 
+        - name: "mongo-db"
+          image: "mongo"
+          imagePullPolicy: "Always"
+          command: ["/bin/sh"]
+          args: ["-c", "mongod --replSet=rs0 --bind_ip_all"]
+          env: 
+            - name: "MONGO_INITDB_ROOT_USERNAME"
+              value: "mongo"
+            - name: "MONGO_INITDB_ROOT_PASSWORD"
+              value: "mongo"
+          ports: 
+            - containerPort: 27017
+              name: "mongodb"
