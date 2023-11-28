@@ -28,4 +28,4 @@ There are two different annotations in `vault-http-route.yml` related to `HTTPS`
 
 ## Test the routing rule:
   - Open your browser and type `https://vault.isc`, You'll see that your connection is `https` and you'll see our cert info in your browser
-  - Open your browser and type `http://vault.isc`, You'll see that your request will be routed to `https`
+  - Open your browser and type `http://vault.isc`, You'll see that your request will be redirected to `https`
