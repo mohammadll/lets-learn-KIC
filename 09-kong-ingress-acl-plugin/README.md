@@ -35,7 +35,7 @@ Go to https://jwt.io/ and choose `rsa256` as your `Algorithm`. then replace its 
     {
       "iss": "admin-issuer"
     }
-Save your token:
+Save admin token:
 
     export ADMIN_JWT=ey....
 Create a secret fot admin_jwt:
@@ -49,5 +49,14 @@ Create a secret fot admin_jwt:
     --from-literal=rsa_public_key="-----BEGIN PUBLIC KEY-----
     REPLACE YOUR OWN RSA PUBLIC KEY HERE
      -----END PUBLIC KEY-----"
-You can find public-key when you choose `rsa256` Algorithm
-do the same for normal user but replace `admin-issuer` with `user-issuer`
+You can find public-key when you choose `rsa256` Algorithm .
+
+do the same for normal user but replace `admin-issuer` with `user-issuer` for the payload:
+
+    {
+      "iss": "admin-issuer"
+    }
+Save normal user token:
+
+    export USER_JWT=ey....
+Create its secret and replace `admin-issuer` with `user-issuer`
