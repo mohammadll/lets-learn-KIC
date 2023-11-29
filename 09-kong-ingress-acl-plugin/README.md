@@ -27,3 +27,27 @@ The first HTTPRoute is responsible to route `/lemon` requests to `echo` service 
     kubectl apply -f user-kong-consumer.yml
 
 Uncomment `annotations` and `konghq.com/plugins: 'app-jwt'` in `echo-app.yml` and then apply `echo-app.yml`. so now if you type `curl -i $PROXY_IP/lemon` or `curl -i $PROXY_IP/lime`, You'll receive `401 Unauthorized` response code
+
+## Provision JWT credentials
+
+Go to https://jwt.io/ and choose `rsa256` as your `Algorithm`. then replace its `payload` with the below content:
+
+    {
+      "iss": "admin-issuer"
+    }
+Save your token:
+
+    export ADMIN_JWT=ey....
+Create a secret fot admin_jwt:
+
+    kubectl create secret \
+    generic admin-jwt  \
+    --from-literal=kongCredType=jwt  \
+    --from-literal=key="admin-issuer" \
+    --from-literal=secret="admin-issuer" \
+    --from-literal=algorithm=RS256 \
+    --from-literal=rsa_public_key="-----BEGIN PUBLIC KEY-----
+    REPLACE YOUR OWN RSA PUBLIC KEY HERE
+     -----END PUBLIC KEY-----"
+You can find public-key when you choose `rsa256` Algorithm
+do the same for normal user but replace `admin-issuer` with `user-issuer`
