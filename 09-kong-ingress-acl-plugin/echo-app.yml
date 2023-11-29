@@ -4,8 +4,8 @@ metadata:
   labels:
     app: echo
   name: echo
-  annotations:
-    konghq.com/plugins: 'app-jwt'
+  # annotations:
+  #  konghq.com/plugins: 'app-jwt'
 spec:
   ports:
     - port: 1025
