@@ -1,0 +1,7 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: basic-auth
+plugin: basic-auth
+config:
+  hide_credentials: true

@@ -1,0 +1,8 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: vault-basic-auth
+config:
+  anonymous: anonymous
+  hide_credentials: true
+plugin: basic-auth

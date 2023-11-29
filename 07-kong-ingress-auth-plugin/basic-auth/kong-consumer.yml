@@ -1,0 +1,9 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongConsumer
+metadata:
+  name: mohammad
+  annotations:
+    kubernetes.io/ingress.class: kong
+username: mohammad
+credentials:
+- mohammad-basic-auth

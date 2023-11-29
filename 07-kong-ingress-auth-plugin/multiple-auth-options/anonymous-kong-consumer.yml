@@ -1,0 +1,8 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongConsumer
+metadata:
+  name: anonymous
+  annotations:
+    kubernetes.io/ingress.class: kong
+    konghq.com/plugins: anonymous-request-termination
+username: anonymous
