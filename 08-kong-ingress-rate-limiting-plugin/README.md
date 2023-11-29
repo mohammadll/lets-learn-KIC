@@ -18,10 +18,27 @@ If you look at the first section of this repo (`00-kong-ingress-setting-up`), we
 
     kubectl scale --replicas 3 -n kong deployment kong-gateway
 
-## Create rate-limiting plugin
+## Create rate-limiting kong plugin
 
     kubectl apply -f rate-limiting-kong-plugin.yml
-Three important  fields are available in `rate-limiting-kong-plugin.yml`:
+
+Some important  fields are available in `rate-limiting-kong-plugin.yml`:
+  - The minute is `5` which means we're allowd to send `5` requests per `minute`. you can change it based on your needs
   - The `policy` is `redis`
   - The `redis host` is the name of redis service
   - The `redis password` that we provided when installing redis using helm
+
+## Create HTTPRoute resource
+
+    kubectl apply -f vault-http-route.yml
+
+## Test rate limiting with a multi-node Kong deployment
+
+    for i in `seq 6`; do curl -ksv https://vault.isc 2>&1 | grep "< HTTP"; done
+You'll receive `307` response code for 5 times. but the sixth response is `429` wchich means you sent too many requests 
+
+## after 1 minute, try the following command:
+    for i in `seq 10`; do curl -ksv https://vault.isc 2>&1 | grep -i "X-RateLimit-Remaining-Minute"; done
+The counters decrement sequentially regardless of the Kong Gateway replica count.
+
+`policy: local` setting in the plugin configuration tracks request counters in each Pod’s local memory separately. Counters are not synchronized across Pods, so clients can send requests past the limit without being throttled if they route through different Pods. because of that, we decided to use `policy: redis`
