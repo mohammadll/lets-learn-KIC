@@ -54,9 +54,21 @@ You can find public-key when you choose `rsa256` Algorithm .
 do the same for normal user but replace `admin-issuer` with `user-issuer` for the payload:
 
     {
-      "iss": "admin-issuer"
+      "iss": "user-issuer"
     }
 Save normal user token:
 
     export USER_JWT=ey....
 Create its secret and replace `admin-issuer` with `user-issuer`
+
+Go to `admin-kong-consumer.yml` and uncomment `credentials` and `admin-jwt`, then Go to `user-kong-consumer.yml` and uncomment `credentials` and `user-jwt`, then:
+
+    kubectl apply -f admin-kong-consumer.yml
+    kubectl apply -f user-kong-consumer.yml
+
+# Create an ACL plugin that allows only the admin group
+
+    kubectl apply -f admin-acl-kong-plugin.yml
+# Create an ACL plugin that allows both the admin and user group
+
+    kubectl apply -f all-acl-kong-plugin.yml
