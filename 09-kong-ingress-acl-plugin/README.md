@@ -66,9 +66,9 @@ Go to `admin-kong-consumer.yml` and uncomment `credentials` and `admin-jwt`, the
     kubectl apply -f admin-kong-consumer.yml
     kubectl apply -f user-kong-consumer.yml
 
-# Create an ACL plugin that allows only the admin group
+## Create an ACL plugin that allows only the admin group
 
     kubectl apply -f admin-acl-kong-plugin.yml
-# Create an ACL plugin that allows both the admin and user group
+## Create an ACL plugin that allows both the admin and user group
 
     kubectl apply -f all-acl-kong-plugin.yml
