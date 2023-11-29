@@ -66,9 +66,24 @@ Go to `admin-kong-consumer.yml` and uncomment `credentials` and `admin-jwt`, the
     kubectl apply -f admin-kong-consumer.yml
     kubectl apply -f user-kong-consumer.yml
 
-## Create an ACL plugin that allows only the admin group
+## Create an ACL kong plugin that allows only the admin group
 
     kubectl apply -f admin-acl-kong-plugin.yml
-## Create an ACL plugin that allows both the admin and user group
+## Create an ACL kong plugin that allows both the admin and user group
 
     kubectl apply -f all-acl-kong-plugin.yml
+
+Go to `http-route-path-1.yml` and `http-route-path-2.yml`, then Uncomment `konghq.com/plugins` in these two files and then:
+
+    kubectl apply -f http-route-path-1.yml
+    kubectl apply -f http-route-path-2.yml
+
+## Add consumers to groups through credentials.
+
+    kubectl apply -f admin-acl-secret.yml
+    kubectl apply -f user-acl-secret.yml
+
+Go to `admin-kong-consumer.yml` and Uncomment item `admin-acl`, then Go to `user-kong-consumer.yml` and Uncomment item `user-acl`. then:
+
+    kubectl apply -f admin-kong-consumer.yml
+    kubectl apply -f user-kong-consumer.yml
