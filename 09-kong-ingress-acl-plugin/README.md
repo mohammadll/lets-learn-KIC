@@ -25,3 +25,5 @@ The first HTTPRoute is responsible to route `/lemon` requests to `echo` service 
 ## Create two different kong consumers (admin, normal-user)
     kubectl apply -f admin-kong-consumer.yml
     kubectl apply -f user-kong-consumer.yml
+
+Uncomment `annotations` and `konghq.com/plugins: 'app-jwt'` in `echo-app.yml` and then apply `echo-app.yml`. so now if you type `curl -i $PROXY_IP/lemon` or `curl -i $PROXY_IP/lime`, You'll receive `401 Unauthorized` response code
