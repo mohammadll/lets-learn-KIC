@@ -87,3 +87,9 @@ Go to `admin-kong-consumer.yml` and Uncomment item `admin-acl`, then Go to `user
 
     kubectl apply -f admin-kong-consumer.yml
     kubectl apply -f user-kong-consumer.yml
+
+## Test the ACL Kong plugin
+- If you type `curl -sI $PROXY_IP/lemon -H "Authorization: Bearer ${ADMIN_JWT}"`, You'll receive `200` response code
+- If you type `curl -sI $PROXY_IP/lime -H "Authorization: Bearer ${ADMIN_JWT}"`, You'll receive `200` response code
+- If you type `curl -sI $PROXY_IP/lime -H "Authorization: Bearer ${USER_JWT}"`, You'll receive `200` response code
+- If you type `curl -sI $PROXY_IP/lemon -H "Authorization: Bearer ${USER_JWT}"`, You'll receive `403 Forbidden` response code
