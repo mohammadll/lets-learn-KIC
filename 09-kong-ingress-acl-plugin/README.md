@@ -11,4 +11,4 @@ To proxy requests, you need an upstream application to send a request to. Deploy
 
     kubectl apply -f http-route-path-1.yml 
     kubectl apply -f http-route-path-2.yml
-The first HTTPRoute is responsible to route `/lemon` requests to `echo` service and the second one is responsible to route `lime` requests to `echo` service. so if you type `curl $PROXY_IP/lemon` or `curl $PROXY_IP/lime`, You'll receive `200` response code.
+The first HTTPRoute is responsible to route `/lemon` requests to `echo` service and the second one is responsible to route `/lime` requests to `echo` service. so if you type `curl -i $PROXY_IP/lemon` or `curl -i $PROXY_IP/lime`, You'll receive `200` response code.
