@@ -1,0 +1,12 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: rate-limit
+  annotations:
+    kubernetes.io/ingress.class: kong
+config:
+  minute: 5
+  policy: redis
+  redis_host: "redis-master"
+  redis_password: "PASSWORD"
+plugin: rate-limiting
