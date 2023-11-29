@@ -17,3 +17,11 @@ If you look at the first section of this repo (`00-kong-ingress-setting-up`), we
   ## Scale `kong-gateway` deployment
 
     kubectl scale --replicas 3 -n kong deployment kong-gateway
+
+## Create rate-limiting plugin
+
+    kubectl apply -f rate-limiting-kong-plugin.yml
+Three important  fields are available in `rate-limiting-kong-plugin.yml`:
+  - The `policy` is `redis`
+  - The `redis host` is the name of redis service
+  - The `redis password` that we provided when installing redis using helm
