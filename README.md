@@ -15,5 +15,8 @@ Kong Ingress Controller takes Kubernetes resources such as `Ingress` and `HTTPRo
  - Expose a service located outside the Kubernetes cluster [README](05-kong-ingress-external-service)
  - Create TCP routing configuration for Kong Gateway in Kubernetes using TCPRoute [README](06-kong-ingress-tcp-route)
  - Authentication kong plugin [README](07-kong-ingress-auth-plugin)
+     - basic-auth authentication method [README](07-kong-ingress-auth-plugin/basic-auth)
+     - key-auth authentication method [README](07-kong-ingress-auth-plugin/key-auth)
+     - using multiple authentication methods simultaneously [README](07-kong-ingress-auth-plugin/multiple-auth-options)
  - Rate Limiting kong plugin [README](08-kong-ingress-rate-limiting-plugin)
  - ACL kong plugin [README](09-kong-ingress-acl-plugin)
