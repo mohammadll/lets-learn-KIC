@@ -4,7 +4,7 @@ metadata:
  name: lemon
  annotations:
    konghq.com/strip-path: 'true'
-   konghq.com/plugins: 'admin-acl'
+#   konghq.com/plugins: 'admin-acl'
 spec:
  parentRefs:
  - name: kong
