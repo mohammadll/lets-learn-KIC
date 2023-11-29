@@ -6,8 +6,6 @@ So If you're using a multi-node Kong deployment, it's better to use `redis` inst
 In this scenario, we're going to scale `kong-gateway` deployment to `3 replicas` and then use redis to synchronize the rate limit information across multiple Kong nodes.
 
 # Follow the below steps to do this scenario
-# Follow the below steps to do this scenario
-
 To proxy requests, you need an upstream application to send a request to. Deploying hashicorp/vault service:
 
     kubectl apply -f vault-deployment.yml
@@ -16,6 +14,8 @@ To proxy requests, you need an upstream application to send a request to. Deploy
 ## Create Gateway-Class and Gateway Resources
 
     kubectl apply -f kong-gateway.yml
+
+    
 
 If you look at the first section of this repo (`00-kong-ingress-setting-up`), we deployed redis to our kubernetes cluster. if redis is not available in your cluster, run the following command:
 
